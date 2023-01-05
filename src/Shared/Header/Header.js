@@ -26,7 +26,6 @@ const Header = () => {
 
 
 
-
     return (
         <Navbar collapseOnSelect expand="lg" variant="light">
             <Container>
@@ -44,7 +43,7 @@ const Header = () => {
 
                         {
                             user ?
-                                <Nav.Link className='text-dark' as={Link} to='/login'>Wishlist</Nav.Link>
+                                <Nav.Link className='text-dark' as={Link} to='/login'>{user?.displayName}</Nav.Link>
                                 :
                                 <Nav.Link className='text-dark' as={Link} to='/login'>Login</Nav.Link>
                         }

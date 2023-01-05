@@ -6,9 +6,14 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home/HomeMain/Home';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
+import auth from './firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 function App() {
+
+  const [user, loading, error] = useAuthState(auth);
+
 
 
   return (
@@ -20,8 +25,25 @@ function App() {
           path="/home"
           element={<Navigate to="/" replace />}
         />
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        {/* <Route path='/login' element={<Login></Login>}></Route> */}
+        {
+          user ?
+            <Route
+              path="/login"
+              element={<Navigate to="/" replace />}
+            />
+            :
+            <Route path='/login' element={<Login></Login>}></Route>
+        }
+        {
+          user ?
+            <Route
+              path="/signup"
+              element={<Navigate to="/" replace />}
+            />
+            :
+            <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        }
         <Route
           path="/register"
           element={<Navigate to="/signup" replace />}

@@ -3,7 +3,7 @@ import './signUp.css';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../images/logo2.png';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -25,11 +25,15 @@ const SignUp = () => {
 
 
 
+
+
+
     //============ Informations ==============
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPS, setConfirmPS] = useState('');
+
 
 
     const handleName = (event) => {
@@ -50,6 +54,11 @@ const SignUp = () => {
         event.preventDefault();
         if (password === confirmPS) {
             createUserWithEmailAndPassword(email, password);
+            //============ sign in process ==========
+
+
+
+
             toast.success('User Created Successfully',
                 {
                     style: {
@@ -59,6 +68,7 @@ const SignUp = () => {
                     },
                 }
             )
+
 
         }
 
@@ -75,12 +85,12 @@ const SignUp = () => {
         }
     }
 
-    const navigate = useNavigate();
 
+
+    const navigate = useNavigate();
     if (user) {
         navigate('/')
     }
-
 
 
 

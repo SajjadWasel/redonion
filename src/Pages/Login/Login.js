@@ -33,47 +33,25 @@ const Login = () => {
     const navigate = useNavigate();
     const handleSignIn = (event) => {
         event.preventDefault();
-        signInWithEmailAndPassword(email, password)
+        signInWithEmailAndPassword(email, password);
         if (user) {
-            toast.success('Login Successfull',
-                {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                }
-            )
-
-        }
-
-        
-
-
-        
-
-        else {
-            toast.error('Email or Password not match',
-                {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                }
-            )
-
-        }
-
-
-        if(user){
             navigate('/')
         }
-        else{
-            return
+        if(error){
+            toast.error("Email or password wrong",
+                {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                }
+            );
         }
+    
     }
 
+    
 
 
 
