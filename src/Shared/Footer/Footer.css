@@ -1,0 +1,9 @@
+.footer {
+    background: #000;
+}
+
+.footer_row .footer_link{
+    text-decoration: none;
+    color: darkgrey;
+    margin-top: 8px;
+}

@@ -1,0 +1,18 @@
+
+
+.banner {
+    height: 27rem;
+    background-image: url(../../../images/bannerbackground.png);
+    background-size: cover;
+}
+
+.btn-search {
+    position: relative;
+    height: 52.8px;
+    right: 151px;
+    top: 1px;
+    background: #F91944;
+    color: white;
+    border: none;
+    width: 150px;
+}

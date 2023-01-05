@@ -1,0 +1,14 @@
+.meal-link {
+    color: #F91944;
+    background-color: white;
+    border: none;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-bottom: 3px solid #ffffff;
+    margin-bottom: 10px;
+}
+
+.meal-link:hover {
+    color: #faa3b5;
+}
+

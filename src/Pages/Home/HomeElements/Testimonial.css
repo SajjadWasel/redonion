@@ -1,0 +1,23 @@
+.bell_icon {
+    font-size: 25px;
+    background-color: #F91944;
+    padding: 10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-radius: 50%;
+    margin-right: 3%;
+}
+
+.btn_testimonial {
+    border: none;
+    background: none;
+    color: rgba(22, 22, 250, 0.773);
+}
+
+.right_arrow_icon {
+    font-size: 30px;
+    background-color: rgb(22, 245, 22);
+    border-radius: 50%;
+    color: white;
+    margin-left: 5px;
+}
