@@ -14,7 +14,6 @@ function App() {
 
   const [user] = useAuthState(auth);
 
-
   return (
     <div className='app'>
       <Header></Header>

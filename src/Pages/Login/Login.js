@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+
 
 
 
@@ -19,6 +21,10 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(
+        auth
+    );
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +43,7 @@ const Login = () => {
         if (user) {
             navigate('/')
         }
-        if(error){
+        if (error) {
             toast.error("Email or password wrong",
                 {
                     style: {
@@ -48,11 +54,31 @@ const Login = () => {
                 }
             );
         }
-    
+
     }
 
-    
 
+
+    const reset_PS = async () => {
+
+        if (email) {
+
+            const success = await sendPasswordResetEmail(email);
+            if (success) {
+                toast.success('Email sent to your mail address')
+            }
+
+        }
+
+        else if (!email){
+            toast.error('Enter your email');
+        }
+        
+        else {
+            toast.error(error2.message)
+        }
+
+    }
 
 
 
@@ -67,9 +93,19 @@ const Login = () => {
                 <Form.Control required onBlur={handlePassword} className='input' size="lg" type="password" placeholder="Password" />
 
                 <Toaster />
+
                 <button className='button_submit my-4' type="submit">
                     Login
                 </button>
+
+                <p className='text-center'>
+                    Forgot Password?
+                    <button className="btn btn-link text-decoration-none"
+                        onClick={reset_PS}
+                    >
+                        Reset Password
+                    </button>
+                </p>
             </Form>
 
 

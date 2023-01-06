@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './signUp.css';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ import { useUpdateProfile } from 'react-firebase-hooks/auth';
 
 
 
+
 const SignUp = () => {
 
     //============ Firebase Hooks ==============
@@ -23,9 +24,10 @@ const SignUp = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const [updateProfile] = useUpdateProfile(auth);
+
 
 
 
@@ -34,9 +36,10 @@ const SignUp = () => {
     const usernameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
-    const confirmPS_Ref = useRef('');
-    const password_check = passwordRef.current.value;
-    // const confirmPS_check = confirmPS_Ref.current.value;
+
+
+    // ============= Other Variables ==================
+    const navigate = useNavigate();
 
 
 
@@ -50,26 +53,21 @@ const SignUp = () => {
         const username = usernameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        // const confirmPS = passwordRef.current.value;
 
 
         await createUserWithEmailAndPassword(email, password);
         const successUpdate = await updateProfile({ displayName: username });
+
         if (successUpdate) {
-            navigate('/home')
+            toast.success('Sign Up Successfull')
+            navigate('/')
         }
         else {
             toast.error(error.message)
         }
-
     }
 
 
-
-    const navigate = useNavigate();
-    if (user) {
-        navigate('/')
-    }
 
 
 
@@ -86,6 +84,10 @@ const SignUp = () => {
 
                 {/* <Form.Control required ref={confirmPS_Ref} className='input' size="lg" type="password" placeholder="Confirm Password" /> */}
                 <Toaster />
+
+
+                
+
 
                 <button
                     className='button_submit mt-4 mb-1' type="submit">
