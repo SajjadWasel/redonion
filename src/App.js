@@ -8,6 +8,8 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import auth from './firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import SingleFood from './Pages/SingleFood/SingleFood';
+
 
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
           path="/register"
           element={<Navigate to="/signup" replace />}
         />
+        <Route path='/:food/:foodId' element={<SingleFood></SingleFood>}></Route>
 
       </Routes>
       <Footer></Footer>
